@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Create Paystack Provider -->
+    <record id="payment_provider_paystack" model="payment.provider">
+        <field name="name">Paystack</field>
+        <field name="code">paystack</field>
+        <field name="redirect_form_view_id" ref="paystack_redirect_form"/>
+        <!-- <field name="state">disabled</field> -->
+        <field name="image_128" type="base64" file="payment_paystack_test/static/description/icon.png"/>
+
+        <!-- <field name="company_id" ref="base.main_company"/> -->
+    </record>
+</odoo>

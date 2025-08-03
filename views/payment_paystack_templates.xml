@@ -1,0 +1,29 @@
+<odoo>
+    <template id="paystack_redirect_form">
+        <t t-call="web.layout">
+            <div class="o_payment_redirect">
+                <p>Redirecting you to Paystack...</p>
+                <form id="paystack_form" t-attf-action="{{redirect_url}}" method="get">
+                </form>
+            </div>
+            <script>
+                document.getElementById('paystack_form').submit();
+            </script>
+        </t>
+    </template>
+</odoo>
+
+
+
+
+
+
+
+<!-- <odoo>
+    <template id="paystack_redirect_form">
+        <form action="${api_url}" method="GET" id="paystack_redirect_form">
+            <button type="submit">Proceed to Paystack</button>
+        </form>
+        <script>document.getElementById('paystack_redirect_form').submit();</script>
+    </template>
+</odoo> -->

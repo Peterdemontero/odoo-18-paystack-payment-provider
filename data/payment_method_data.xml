@@ -1,0 +1,8 @@
+<odoo>
+    <!-- Define Paystack payment method -->
+    <record id="payment_method_paystack" model="account.payment.method">
+        <field name="name">Paystack</field>
+        <field name="code">paystack</field>
+        <field name="payment_type">inbound</field>
+    </record>
+</odoo>
