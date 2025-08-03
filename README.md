@@ -49,8 +49,6 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
    - **Secret Key**: Your Paystack Secret Key.  
    - **Webhook Secret**: Your Paystack Webhook Secret (if using webhooks).  
 
-*Example screenshot (replace with actual):*  
-![Paystack Provider Settings](screenshots/paystack_provider_settings.png)
 
 ---
 
@@ -66,8 +64,6 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
 2. Click **Pay Now** → **Pay with Paystack**.  
 3. You will be redirected to **Paystack Checkout**.  
 
-*Example screenshot (replace with actual):*  
-![Paystack Checkout](screenshots/paystack_checkout.png)
 
 4. After payment, the transaction status will be updated in Odoo.
 
