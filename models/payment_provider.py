@@ -1,7 +1,7 @@
 import requests
 from odoo import _, fields, models
 from odoo.exceptions import ValidationError
-from odoo.addons.payment_paystack_test import const
+# from odoo.addons.payment_paystack import const
 
 
 class PaymentProvider(models.Model):
