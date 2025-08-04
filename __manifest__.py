@@ -1,6 +1,6 @@
 
 {
-    'name': 'Paystack Payment Acquirer',
+    'name': 'Paystack Payment Provider',
     'summary': 'Payment Provider: Custom Paystack Implementation',
     'author': 'Peter Demontero',
     'version': '1.0',
@@ -15,5 +15,5 @@
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
-    'images': ['static/description/icon.png'], 
+    'images': ['static/description/icon1.png'], 
 }

@@ -22,7 +22,7 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
 1. Clone or download this module into your custom Odoo addons directory:
    ```bash
    cd /path/to/odoo/addons
-   git clone https://github.com/YOUR_USERNAME/odoo_paystack_provider.git
+   git clone https://github.com/Peterdemontero/odoo-18-paystack-payment-provider.git
    ```
 
 2. Restart your Odoo server:
@@ -48,6 +48,7 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
    - **Public Key**: Your Paystack Public Key.  
    - **Secret Key**: Your Paystack Secret Key.  
    - **Webhook Secret**: Your Paystack Webhook Secret (if using webhooks).  
+
 
 
 ---
