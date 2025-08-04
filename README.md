@@ -49,6 +49,8 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
    - **Secret Key**: Your Paystack Secret Key.  
    - **Webhook Secret**: Your Paystack Webhook Secret (if using webhooks).  
 
+
+
 ---
 
 ### 2. Link to a Bank Journal
