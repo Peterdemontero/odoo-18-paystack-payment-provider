@@ -22,7 +22,7 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
 1. Clone or download this module into your custom Odoo addons directory:
    ```bash
    cd /path/to/odoo/addons
-   git clone https://github.com/YOUR_USERNAME/odoo_paystack_provider.git
+   git clone https://github.com/Peterdemontero/odoo-18-paystack-payment-provider.git
    ```
 
 2. Restart your Odoo server:
@@ -49,9 +49,6 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
    - **Secret Key**: Your Paystack Secret Key.  
    - **Webhook Secret**: Your Paystack Webhook Secret (if using webhooks).  
 
-*Example screenshot (replace with actual):*  
-![Paystack Provider Settings](screenshots/paystack_provider_settings.png)
-
 ---
 
 ### 2. Link to a Bank Journal
@@ -66,8 +63,6 @@ It supports seamless **redirection to Paystack Checkout** and updates the paymen
 2. Click **Pay Now** → **Pay with Paystack**.  
 3. You will be redirected to **Paystack Checkout**.  
 
-*Example screenshot (replace with actual):*  
-![Paystack Checkout](screenshots/paystack_checkout.png)
 
 4. After payment, the transaction status will be updated in Odoo.
 
