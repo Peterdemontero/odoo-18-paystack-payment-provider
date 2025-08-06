@@ -1,4 +1,5 @@
 
+import json
 import logging,re
 import pprint
 from werkzeug import urls
@@ -75,8 +76,58 @@ class PaymentTransaction(models.Model):
             self._set_error(_("Payment failed for reference %s.", reference))
         else:
             self._set_pending()
+            
+    def _paystack_transactions_data(self):
+        """Fetch and store Paystack transactions."""
+        try:
+            response = self.provider_id._paystack_make_request('transaction', method='GET')
+            if not response.get('status'):
+                raise ValidationError("Paystack request failed: %s" % response.get('message'))
 
+            transactions = response.get('data', [])
+            if not transactions:
+                _logger.info("No new transactions returned from Paystack.")
+                return  # Nothing to process
 
+            for tx in transactions:
+                vals = {
+                    'reference': tx.get('reference'),
+                    'amount': tx.get('amount', 0) / 100.0,  # kobo → naira
+                    'status': tx.get('status'),
+                    'customer_email': tx.get('customer', {}).get('email'),
+                    'customer_name': tx.get('metadata', {}).get('custom_fields', [{}])[0].get('value', 'Unknown'),
+                    'transaction_date': tx.get('paid_at') or tx.get('created_at'),
+                    'raw_data': json.dumps(tx, indent=2)
+                }
+                existing = self.env['paystack.transaction'].search([('reference', '=', vals['reference'])], limit=1)
+                if existing:
+                    existing.write(vals)
+                else:
+                    self.env['paystack.transaction'].create(vals)
+
+            _logger.info("Fetched %d Paystack transactions.", len(transactions))
+        except Exception as e:
+            _logger.error("Error fetching/saving Paystack transactions: %s", str(e))
+            raise ValidationError("Failed to sync Paystack transactions.")
+    
+    def action_fetch_transactions(self):
+        """Button click action to fetch transactions"""
+        self._paystack_transactions_data()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+
+            
+    def _convert_date(self, date_str):
+        """Convert Paystack date string to Odoo datetime"""
+        if date_str:
+            try:
+                return fields.Datetime.to_string(datetime.fromisoformat(date_str.replace('Z', '+00:00')))
+            except Exception:
+                return False
+        return False       
+            
     def _paystack_is_authorization_pending(self):
         return self.filtered_domain([
             ('provider_code', '=', 'paystack'),

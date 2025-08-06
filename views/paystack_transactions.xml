@@ -1,0 +1,77 @@
+<odoo>
+    <!-- List View -->
+    <record id="view_paystack_transaction_list" model="ir.ui.view">
+        <field name="name">paystack.transaction.list</field>
+        <field name="model">paystack.transaction</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="reference"/>
+                <field name="transaction_date"/>
+                <field name="customer_name"/>
+                <field name="customer_email"/>
+                <field name="channel"/>
+                <field name="amount"/>
+                <field name="currency"/>
+                <field name="fees"/>
+                <field name="status"  widget="badge"
+                decoration-success="status == 'success'"
+                decoration-warning="status == 'abandoned'"
+                decoration-danger="status == 'failed'" />
+                
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_paystack_transaction_form" model="ir.ui.view">
+        <field name="name">paystack.transaction.form</field>
+        <field name="model">paystack.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_fetch_transactions" string="Fetch Transactions" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="reference"/>
+                        <field name="transaction_date"/>
+                        <field name="customer_name"/>
+                        <field name="customer_email"/>
+                        <field name="channel"/>
+                        <field name="amount"/>
+                        <field name="currency"/>
+                        <field name="fees"/>
+                        <field name="status"  widget="badge"
+                        decoration-success="status == 'success'"
+                        decoration-warning="status == 'abandoned'"
+                        decoration-danger="status == 'failed'" />
+                        <field name="raw_data"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="paystack_transaction_action" model="ir.actions.act_window">
+        <field name="name">Paystack Transactions</field>
+        <field name="res_model">paystack.transaction</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_paystack_root" name="Paystack" sequence="10" web_icon="payment_paystack,static/description/icon.png" />
+    <menuitem id="paystack_transaction_menu" name="Transactions"
+              parent="menu_paystack_root"
+              action="paystack_transaction_action"
+              sequence="10"/>
+
+    <!-- Action Menu Item -->
+    <record id="action_fetch_paystack_transactions" model="ir.actions.server">
+        <field name="name">Fetch Transactions</field>
+        <field name="model_id" ref="model_paystack_transaction"/>
+        <field name="binding_model_id" ref="model_paystack_transaction"/>
+        <field name="state">code</field>
+        <field name="code">model.action_fetch_transactions()</field>
+    </record>
+</odoo>
